@@ -1,0 +1,53 @@
+.wd-kanbas-navigation {
+  background-color: black;
+  list-style: none;
+  padding: 0px;
+  width: 80px;
+  margin-bottom: 0;
+  /* padding-bottom: 20px; */
+  height: 100%;
+}
+
+.wd-kanbas-navigation li {
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 0.7em;
+  text-align: center;
+}
+
+.wd-kanbas-navigation a {
+  color: white;
+  text-decoration: none;
+}
+
+.wd-kanbas-navigation li.wd-active {
+  background-color: white;
+}
+
+.wd-kanbas-navigation li.wd-active a {
+  color: red;
+  font-weight: bold;
+}
+
+.neu-logo {
+  width: 100%;
+}
+
+.wd-kanbas-navigation i {
+  color: red;
+  text-decoration: none;
+}
+
+.wd-kanbas-navigation a p {
+  margin: 0;
+  padding-top: 3px;
+}
+
+.wd-kanbas-navigation a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+body{
+  background-color: black;
+}

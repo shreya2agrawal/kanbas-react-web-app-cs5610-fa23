@@ -1,0 +1,30 @@
+
+.wd-courses-navigation {
+  list-style: none;
+  width: 195px;
+  margin-left: 9px;
+}
+
+.wd-courses-navigation li {
+  padding-left: 3.5px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.wd-courses-navigation a {
+  text-decoration: none;
+  color: red;
+  font-size: medium;
+  text-align: justify;
+  text-wrap: balance;
+}
+
+.wd-courses-navigation li.wd-active {
+  border-left: 1px solid black;
+  border-width: 2px;
+  font-weight: 550;
+}
+
+.wd-courses-navigation a:hover {
+  color: #000;
+}

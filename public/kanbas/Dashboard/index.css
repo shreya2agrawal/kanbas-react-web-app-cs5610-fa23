@@ -1,0 +1,45 @@
+.wd-dashboard-header {
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-right: 20px;
+}
+
+.wd-dashboard-content {
+  padding: 20px;
+}
+
+.card-header {
+  height: 170px;
+}
+
+.wd-published-course-header {
+    margin-left: 50px;
+    padding-right: 20px;
+}
+/* 
+.wd-dashboard-content{
+    margin-left: 30px;
+} */
+
+.col{
+    width: 270px;
+    margin: 30px;
+}
+
+.card{
+    margin-bottom: 30px;
+}
+
+.wd-course-title-code{
+    font-size: medium;
+}
+
+.wd-course-term{
+    font-size: small;
+    padding-top: 2px;
+}
+
+.wd-card-link{
+  text-decoration: none;
+  color: #000;
+}
