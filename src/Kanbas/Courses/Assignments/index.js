@@ -4,6 +4,7 @@ import db from "../../Database";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlus,
+  faPenToSquare,
   faCheckCircle,
   faEllipsisV,
 } from "@fortawesome/free-solid-svg-icons";
@@ -89,23 +90,25 @@ function Assignments() {
       </ul>
       <ul className="list-group" style={{ flex: "1" }}>
         {courseAssignments.map((assignment) => (
-          <li className="list-group-item" key={assignment._id}>
-            <div className="flex-container">
+          <li className="list-group-item wd-all-assignments" key={assignment._id}>
+            <div className="flex-container wd-all-assignments">
               <i
                 className="far fa-list-alt"
                 style={{ color: "#00b900", marginRight: "20px" }}
               ></i>
-              <div style={{ flex: 1 }}>
+              <div style={{ flex: 1 }} className="wd-all-assignments">
                 <Link
                   key={assignment._id}
                   onClick={() => dispatch(setAssignment(assignment))}
                   to={`/Kanbas/Courses/${courseId}/Assignments/${assignment._id}`}
                   style={{ color: "black", fontSize: "14px" }}
                 >
+                  <FontAwesomeIcon icon={faPenToSquare} style={{ color: "red" }} className="fa-regular icon-margin" />
+                  &nbsp;
                   <b>{assignment.title}</b>
                 </Link>
                 <br />
-                <span style={{ fontSize: "10px", color: "red" }}>
+                <span style={{ fontSize: "10px", color: "grey" }}>
                   {assignment._id} : {assignment.course}&nbsp;&nbsp;
                 </span>
                 <span style={{ fontSize: "10px" }}>

@@ -2,46 +2,55 @@
     {
         "_id": "A1",
         "title": "A1 SETUP",
-        "course": "RS101"
+        "course": "RS101",
+        "due":"2023-09-09"
     },
     {
         "_id": "A2",
         "title": "A2 HTML",
-        "course": "RS101"
+        "course": "RS101",
+        "due":"2023-09-20"
     },
     {
         "_id": "A3",
         "title": "A3 CSS",
-        "course": "RS101"
+        "course": "RS101",
+        "due":"2023-09-30"
     },
     {
         "_id": "A4",
         "title": "A4 BOOTSTRAP",
-        "course": "RS101"
+        "course": "RS101",
+        "due":"2023-10-12"
     },
     {
         "_id": "A5",
         "title": "A5 JAVASCRIPT",
-        "course": "RS101"
+        "course": "RS101",
+        "due":"2023-10-23"
     },
     {
         "_id": "A6",
         "title": "A6 REACT",
-        "course": "RS101"
+        "course": "RS101",
+        "due":"2023-11-02"
     },
     {
         "_id": "A7",
         "title": "A7 REDUX",
-        "course": "RS101"
+        "course": "RS101",
+        "due":"2023-11-14"
     },
     {
         "_id": "A8",
         "title": "A8 NODE",
-        "course": "RS101"
+        "course": "RS101",
+        "due":"2023-11-26"
     },
     {
         "_id": "A9",
         "title": "A9 MONGO",
-        "course": "RS101"
+        "course": "RS101",
+        "due":"2023-12-09"
     }
 ]
