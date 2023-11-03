@@ -34,14 +34,14 @@ function Nav() {
         Kanbas
       </Link>
       <Link
-        to="/a4"
-        className={`nav-link ${pathname.includes("Kanbas") ? "active" : ""}`}
+        to="/Labs/a4"
+        className={`nav-link ${pathname.includes("a4") ? "active" : ""}`}
       >
         A4
       </Link>
       <Link
-        to="/a5"
-        className={`nav-link ${pathname.includes("Kanbas") ? "active" : ""}`}
+        to="/Labs/a5"
+        className={`nav-link ${pathname.includes("a5") ? "active" : ""}`}
       >
         A5
       </Link>

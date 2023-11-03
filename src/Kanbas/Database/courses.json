@@ -1,7 +1,7 @@
 [
     {
         "_id": "RS101",
-        "name": "CS4550 19753 Web Development",
+        "name": "CS4550 19753 Web Development Under-Graduates",
         "code": "CS4550.19753.202410",
         "startDate": "2023-01-10",
         "endDate": "2023-05-15",
@@ -10,8 +10,8 @@
     },
     {
         "_id": "RS102",
-        "name": "CS4550 19753 Web Development",
-        "code": "CS4550.19753.202410",
+        "name": "CS5610 30231 Web Development Graduates",
+        "code": "CS5610.30231.202410",
         "number": "RS4560",
         "startDate": "2023-01-10",
         "endDate": "2023-05-15",
@@ -21,8 +21,8 @@
     },
     {
         "_id": "RS103",
-        "name": "CS4550 19753 Web Development",
-        "code": "CS4550.19753.202410",
+        "name": "CS4650 27399 Mobile Development Under-Graduates",
+        "code": "CS4650.27399.202410",
         "number": "RS4570",
         "startDate": "2023-01-10",
         "endDate": "2023-05-15",
@@ -32,8 +32,8 @@
     },
     {
         "_id": "RS104",
-        "name": "CS4550 19753 Web Development",
-        "code": "CS4550.19753.202410",
+        "name": "CS4550 81311 Mobile Development Graduates",
+        "code": "CS4550.81311.202310",
         "number": "RS4570",
         "startDate": "2023-01-10",
         "endDate": "2023-05-15",
@@ -43,8 +43,8 @@
     },
     {
         "_id": "RS105",
-        "name": "CS4550 19753 Web Development",
-        "code": "CS4550.19753.202410",
+        "name": "CS5610 19753 Web Development Graduates Section-2",
+        "code": "CS5610.19753.202310",
         "number": "RS4570",
         "startDate": "2023-01-10",
         "endDate": "2023-05-15",
@@ -54,8 +54,8 @@
     },
     {
         "_id": "RS106",
-        "name": "CS4550 19753 Web Development",
-        "code": "CS4550.19753.202410",
+        "name": "CS2411 12329 Web Development",
+        "code": "CS2411.12329.202310",
         "number": "RS4570",
         "startDate": "2023-01-10",
         "endDate": "2023-05-15",
@@ -65,8 +65,8 @@
     },
     {
         "_id": "RS107",
-        "name": "CS4550 19753 Web Development",
-        "code": "CS4550.19753.202410",
+        "name": "CS4550 13929 Web Development",
+        "code": "CS4550.13929.202410",
         "number": "RS4570",
         "startDate": "2023-01-10",
         "endDate": "2023-05-15",

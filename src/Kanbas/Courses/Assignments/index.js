@@ -1,96 +1,151 @@
-// import React from "react";
-// import { Link, useParams } from "react-router-dom";
-// import db from "../../Database";
-
-// function Assignments() {
-//   const { courseId } = useParams();
-//   const assignments = db.assignments;
-//   const courseAssignments = assignments.filter(
-//     (assignment) => assignment.course === courseId);
-//   return (
-//     <div>
-//       <h2>Assignments for course {courseId}</h2>
-//       <div className="list-group">
-//         {courseAssignments.map((assignment) => (
-//           <Link
-//             key={assignment._id}
-//             to={`/Kanbas/Courses/${courseId}/Assignments/${assignment._id}`}
-//             className="list-group-item">
-//             {assignment.title}
-//           </Link>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
-// export default Assignments;
-import React from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import db from "../../Database";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faCheckCircle, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
-import './index.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlus,
+  faCheckCircle,
+  faEllipsisV,
+} from "@fortawesome/free-solid-svg-icons";
+import "./index.css";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteAssignment, setAssignment } from "./assignmentsReducer";
 
+import DeleteConfirmation from "./DeleteConfirmation";
 
 function Assignments() {
   const { courseId } = useParams();
-  const assignments = db.assignments;
-  const courseAssignments = assignments.filter(
-    assignment => assignment.course === courseId
-  );
+  const navigate = useNavigate();
+  const assignments = useSelector((state) => state.assignmentsReducer.assignments);
+  const courseAssignments = assignments.filter((ass) => ass.course === courseId);
+  const dispatch = useDispatch();
+
+  const handleAddAssignment = () => {
+    const newAssignment = {
+      title: "New Assingment",
+      description: "New Assignment Description",
+      course: courseId,
+      _id: new Date().getTime().toString(),
+    };
+    dispatch(setAssignment(newAssignment));
+    navigate(`/Kanbas/Courses/${courseId}/Assignments/${newAssignment._id}`);
+  }
+
+  const [deleteConfirmation, setDeleteConfirmation] = useState(null);
+  const handleDeleteConfirmation = (assignmentId) => {
+    setDeleteConfirmation(assignmentId);
+  };
+  const handleDeleteAssignment = () => {
+    if (deleteConfirmation) {
+      dispatch(deleteAssignment(deleteConfirmation));
+      setDeleteConfirmation(null);
+    }
+  };
+
 
   return (
     <div>
-        <h2>Assignments for course {courseId}</h2>
-        <br />
-        <div className="flex-container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <input type="text" placeholder="Search for Assignment..." style={{ height: "35px"}} />
-            <div style={{ display: "flex", marginLeft: '10px' }}>
-                <button className="btn btn-secondary custom-btn" style={{ height: "35px", marginRight: '5px' }}>
-                    <i className="fas fa-plus"></i> + Group
-                </button>
-                
-                <button className="btn btn-danger" style={{ height: "35px", marginRight: '5px' }}>
-                    <i className="fas fa-plus"></i> Assignment
-                </button>
-                
-                <button className="btn btn-secondary custom-btn" style={{ width: "0.8cm", height: "35px", marginRight: '5px' }}>
-                    <b>⋮</b>
-                </button>
-            </div>
+      <h2>Assignments for course {courseId}</h2>
+      <br />
+      <div
+        className="flex-container"
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <input
+          type="text"
+          placeholder="Search for Assignment..."
+          style={{ height: "35px", width: "50%" }}
+        />
+        <div style={{ display: "flex", marginLeft: "10px" }}>
+          <button
+            className="btn btn-secondary custom-btn"
+            style={{ height: "35px", marginRight: "5px" }}
+          >
+            <i className="fas fa-plus"></i> + Group
+          </button>
+
+          <button
+            className="btn btn-danger"
+            style={{ height: "35px", marginRight: "5px" }}
+            onClick={handleAddAssignment}
+          >
+            <i className="fas fa-plus"></i> + Assignment
+          </button>
+
+          <button
+            className="btn btn-secondary custom-btn"
+            style={{ width: "0.8cm", height: "35px", marginRight: "5px" }}
+          >
+            <b>⋮</b>
+          </button>
         </div>
-      <div style={{ textAlign: "left" }}>
       </div>
+      <div style={{ textAlign: "left" }}></div>
       <hr />
-      <ul className="list-group" style={{flex: '1'}}>
+      <ul className="list-group" style={{ flex: "1" }}>
         <li className="list-group-item list-group-item-secondary custom-grey-bg">
           <div className="flex-container">
             <b>Assignments</b>
           </div>
         </li>
       </ul>
-      <ul className="list-group" style={{flex: '1'}}>
+      <ul className="list-group" style={{ flex: "1" }}>
         {courseAssignments.map((assignment) => (
           <li className="list-group-item" key={assignment._id}>
             <div className="flex-container">
-              <i className="far fa-list-alt" style={{ color: "#00b900", marginRight: "20px" }}></i>
+              <i
+                className="far fa-list-alt"
+                style={{ color: "#00b900", marginRight: "20px" }}
+              ></i>
               <div style={{ flex: 1 }}>
-                <Link to={`/Kanbas/Courses/${courseId}/Assignments/${assignment._id}`} style={{ color: "black", fontSize: "14px" }}>
+                <Link
+                  key={assignment._id}
+                  onClick={() => dispatch(setAssignment(assignment))}
+                  to={`/Kanbas/Courses/${courseId}/Assignments/${assignment._id}`}
+                  style={{ color: "black", fontSize: "14px" }}
+                >
                   <b>{assignment.title}</b>
                 </Link>
                 <br />
-                <span style={{ fontSize: "10px", color: "red"}}>{assignment._id} : {assignment.course}&nbsp;&nbsp;</span>
-                <span style={{ fontSize: "10px" }}>|&nbsp;&nbsp; <b>Due</b>&nbsp;&nbsp;{assignment.due}</span>
+                <span style={{ fontSize: "10px", color: "red" }}>
+                  {assignment._id} : {assignment.course}&nbsp;&nbsp;
+                </span>
+                <span style={{ fontSize: "10px" }}>
+                  |&nbsp;&nbsp; <b>Due</b>&nbsp;&nbsp;{assignment.due}
+                </span>
               </div>
               <div>
-                <FontAwesomeIcon icon={faCheckCircle} style={{ color: '#00a600' }} />
+                <FontAwesomeIcon
+                  icon={faCheckCircle}
+                  style={{ color: "#00a600" }}
+                />
                 &nbsp;&nbsp;&nbsp;
-                <FontAwesomeIcon icon={faEllipsisV} style={{ color: '#787878' }} />
+                <FontAwesomeIcon
+                  icon={faEllipsisV}
+                  style={{ color: "#787878" }}
+                />
+                &nbsp;
+                &nbsp;
+                <button className="btn btn-danger icon-margin" onClick={() => handleDeleteConfirmation(assignment._id)}>
+                  Delete
+                </button>
               </div>
             </div>
           </li>
         ))}
       </ul>
+      {deleteConfirmation && (
+        <div className="delete-confirmation-overlay">
+          <DeleteConfirmation
+            onCancel={() => setDeleteConfirmation(null)}
+            onConfirm={handleDeleteAssignment}
+          />
+        </div>
+      )}
     </div>
   );
 }

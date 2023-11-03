@@ -9,11 +9,11 @@ import Assignments from "./Assignments";
 import AssignmentEditor from "./Assignments/AssignmentEditor";
 import Grades from "./Grades";
 
-function Courses() {
+function Courses({coursesList }) {
     const { courseId } = useParams();
     const { pathname } = useLocation();
     const [empty, kanbas, courses, id, screen] = pathname.split("/");
-    const course = db.courses.find((course) => course._id === courseId);
+    const course = coursesList.find((course) => course._id === courseId);
 
     const separatorStyle = {
         color: "gray",
@@ -25,7 +25,7 @@ function Courses() {
             <span style={separatorStyle}> &gt; </span>
             <Link to={pathname} style={{ color: "black" }}>{screen}</Link>
             <hr />
-            <CourseNavigation />
+            <CourseNavigation courses={coursesList} />
             <div>
                 <div
                     className="overflow-y-scroll position-fixed bottom-0 end-0"

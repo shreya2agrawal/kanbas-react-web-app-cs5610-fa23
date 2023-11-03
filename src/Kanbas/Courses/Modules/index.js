@@ -1,5 +1,10 @@
 import ModuleList from "./ModuleList";
 function Modules() {
-  return <ModuleList />;
+  return (
+    <div>
+      <h2>Modules</h2>
+      <ModuleList />
+    </div>
+  );
 }
 export default Modules;

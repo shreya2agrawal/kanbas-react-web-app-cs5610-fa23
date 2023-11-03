@@ -227,3 +227,11 @@ ul li a {
 .wd-flex-grow-1 {
   flex-grow: 1;
 }
+
+.wd-module-list-button{
+  margin-left: 15px;
+}
+
+.wd-add-update-button{
+  margin-left: 15px;
+}

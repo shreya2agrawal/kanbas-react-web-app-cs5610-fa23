@@ -6,8 +6,35 @@ import { Routes, Route, Navigate } from "react-router";
 import { Link } from "react-router-dom";
 import { faFilePen } from "@fortawesome/free-solid-svg-icons";
 
-function Dashboard ({ courses, course, setCourse, addNewCourse, deleteCourse, updateCourse }) {
-  
+function DashboardKanbas() {
+  const [courses, setCourses] = useState(db.courses);
+  const [course, setCourse] = useState({
+    name: "New Course",
+    number: "New Number",
+    startDate: "2023-09-10",
+    endDate: "2023-12-15",
+  });
+
+  const addNewCourse = () => {
+    setCourses([...courses, { ...course, _id: new Date().getTime() }]);
+  };
+
+  const updateCourse = () => {
+    setCourses(
+      courses.map((c) => {
+        if (c._id === course._id) {
+          return course;
+        } else {
+          return c;
+        }
+      })
+    );
+  };
+
+  const deleteCourse = (courseId) => {
+    setCourses(courses.filter((course) => course._id !== courseId));
+  };
+
   //const courses = db.courses;
   return (
     <div>
@@ -58,25 +85,8 @@ function Dashboard ({ courses, course, setCourse, addNewCourse, deleteCourse, up
                   setCourse({ ...course, endDate: e.target.value })
                 }
               />
-            </div>
-
-            <br />
-
-            <div
-              className="row no-gutters flex-lg-nowrap"
-              style={{ marginLeft: "48px" }}
-            >
-              <button
-                className="btn btn-success wd-new-course-form float-end"
-                onClick={addNewCourse}
-              >
+              <button className="btn btn-success" onClick={addNewCourse}>
                 Add
-              </button>
-              <button
-                className="btn btn-primary wd-new-course-form float-end"
-                onClick={updateCourse}
-              >
-                Update
               </button>
             </div>
             <br />
@@ -103,6 +113,7 @@ function Dashboard ({ courses, course, setCourse, addNewCourse, deleteCourse, up
                       >
                         Delete
                       </button>
+
                       {course.name}
                     </h5>
 
@@ -116,15 +127,11 @@ function Dashboard ({ courses, course, setCourse, addNewCourse, deleteCourse, up
                     <div class="wd-course-term">{course.term}</div>
                     <p className="card-text">{course.description}</p>
                     <button
-                      className="btn btn-warning"
-                      onClick={(event) => {
-                        event.preventDefault();
-                        setCourse(course);
-                      }}
+                      className="btn btn-transparent"
+                      onClick={updateCourse}
                       style={{ backgroundColor: "transparent", color: "black" }}
                     >
-                      <FontAwesomeIcon icon={faFilePen}></FontAwesomeIcon>{" "}
-                      &nbsp; Edit
+                      <FontAwesomeIcon icon={faFilePen}></FontAwesomeIcon>
                     </button>
                   </div>
                 </div>
@@ -138,4 +145,4 @@ function Dashboard ({ courses, course, setCourse, addNewCourse, deleteCourse, up
   );
 }
 
-export default Dashboard;
+export default DashboardKanbas;
