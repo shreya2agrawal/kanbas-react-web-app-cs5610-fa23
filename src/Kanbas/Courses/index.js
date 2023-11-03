@@ -13,7 +13,7 @@ function Courses({coursesList }) {
     const { courseId } = useParams();
     const { pathname } = useLocation();
     const [empty, kanbas, courses, id, screen] = pathname.split("/");
-    const course = coursesList.find((course) => course._id === courseId);
+    const course = coursesList.find((c) => c._id == courseId);
 
     const separatorStyle = {
         color: "gray",

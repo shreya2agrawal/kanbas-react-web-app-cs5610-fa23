@@ -427,34 +427,35 @@ function Modules() {
 
 export default Modules;
 
-// const addModule = (module) => {
-//   setModules([
-//     { ...module, _id: new Date().getTime().toString() },
-//     ...modules,
-//   ]);
-// };
+  // const addModule = (module) => {
+  //   setModules([
+  //     { ...module, _id: new Date().getTime().toString() },
+  //     ...modules,
+  //   ]);
+  // };
 
-// const deleteModule = (moduleId) => {
-//   setModules(modules.filter((module) => module._id !== moduleId));
-// };
+  // const deleteModule = (moduleId) => {
+  //   setModules(modules.filter((module) => module._id !== moduleId));
+  // };
 
-// const updateModule = () => {
-//   setModules(
-//     modules.map((m) => {
-//       if (m._id === module._id) {
-//         return module;
-//       } else {
-//         return m;
-//       }
-//     })
-//   );
-// };
+  // const updateModule = () => {
+  //   setModules(
+  //     modules.map((m) => {
+  //       if (m._id === module._id) {
+  //         return module;
+  //       } else {
+  //         return m;
+  //       }
+  //     })
+  //   );
+  // };
+  
+  // const [module, setModule] = useState({
+  //   name: "New Module",
+  //   description: "New Description",
+  //   course: courseId,
+  // });
 
-// const [module, setModule] = useState({
-//   name: "New Module",
-//   description: "New Description",
-//   course: courseId,
-// });
-
-// const modules = db.modules;
-// const [modules, setModules] = useState(db.modules);
+  
+  // const modules = db.modules;
+  // const [modules, setModules] = useState(db.modules);

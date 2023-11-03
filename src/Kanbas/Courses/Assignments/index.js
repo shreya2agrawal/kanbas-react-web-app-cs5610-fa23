@@ -11,13 +11,15 @@ import "./index.css";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteAssignment, setAssignment } from "./assignmentsReducer";
 
-import DeleteConfirmation from "./DeleteConfirmation";
-
 function Assignments() {
   const { courseId } = useParams();
   const navigate = useNavigate();
-  const assignments = useSelector((state) => state.assignmentsReducer.assignments);
-  const courseAssignments = assignments.filter((ass) => ass.course === courseId);
+  const assignments = useSelector(
+    (state) => state.assignmentsReducer.assignments
+  );
+  const courseAssignments = assignments.filter(
+    (ass) => ass.course === courseId
+  );
   const dispatch = useDispatch();
 
   const handleAddAssignment = () => {
@@ -29,19 +31,11 @@ function Assignments() {
     };
     dispatch(setAssignment(newAssignment));
     navigate(`/Kanbas/Courses/${courseId}/Assignments/${newAssignment._id}`);
-  }
-
-  const [deleteConfirmation, setDeleteConfirmation] = useState(null);
-  const handleDeleteConfirmation = (assignmentId) => {
-    setDeleteConfirmation(assignmentId);
-  };
-  const handleDeleteAssignment = () => {
-    if (deleteConfirmation) {
-      dispatch(deleteAssignment(deleteConfirmation));
-      setDeleteConfirmation(null);
-    }
   };
 
+  const handleDeleteAssignment = (assignmentId) => {
+    dispatch(deleteAssignment(assignmentId));
+  };
 
   return (
     <div>
@@ -128,9 +122,11 @@ function Assignments() {
                   icon={faEllipsisV}
                   style={{ color: "#787878" }}
                 />
-                &nbsp;
-                &nbsp;
-                <button className="btn btn-danger icon-margin" onClick={() => handleDeleteConfirmation(assignment._id)}>
+                &nbsp; &nbsp;
+                <button
+                  className="btn btn-danger icon-margin"
+                  onClick={() => handleDeleteAssignment(assignment._id)}
+                >
                   Delete
                 </button>
               </div>
@@ -138,14 +134,6 @@ function Assignments() {
           </li>
         ))}
       </ul>
-      {deleteConfirmation && (
-        <div className="delete-confirmation-overlay">
-          <DeleteConfirmation
-            onCancel={() => setDeleteConfirmation(null)}
-            onConfirm={handleDeleteAssignment}
-          />
-        </div>
-      )}
     </div>
   );
 }

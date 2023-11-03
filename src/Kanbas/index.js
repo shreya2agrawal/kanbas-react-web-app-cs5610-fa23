@@ -20,7 +20,7 @@ function Kanbas() {
   });
 
   const addNewCourse = () => {
-    setCourses([{ ...course, _id: new Date().getTime(), code: "RS192" }, ...courses]);
+    setCourses([{ ...course, _id: new Date().getTime()}, ...courses]);
   };
 
   const updateCourse = () => {
