@@ -4,8 +4,10 @@ function IntegratingReactWithAPIs() {
   const [a, setA] = useState(34);
   const [b, setB] = useState(23);
   const [welcome, setWelcome] = useState("");
-  const URL_local = "http://localhost:4000";
-  const URL_global = "https://kanbas-node-server-app-tth1.onrender.com";
+  // const URL_local = "http://localhost:4000";
+  // const URL_global = "https://kanbas-node-server-app-tth1.onrender.com";
+  const URL_global = process.env.REACT_APP_LAB_BASE;
+
 
   const fetchWelcome = async () => {
     const response = await axios.get(`${URL_global}/a5/welcome`);

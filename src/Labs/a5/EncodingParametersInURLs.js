@@ -13,7 +13,10 @@ function EncodingParametersInURLs() {
   //   fetchWelcome();
   // }, []);
   const URL_local = "http://localhost:4000";
-  const URL_global = "https://kanbas-node-server-app-tth1.onrender.com";
+  // const API_BASE = process.env.REACT_APP_API_BASE;
+  // const URL_global = "https://kanbas-node-server-app-tth1.onrender.com";
+  // const URL_global = `${API_BASE}`;
+  const URL_global = process.env.REACT_APP_LAB_BASE;
 
   return (
     <div>

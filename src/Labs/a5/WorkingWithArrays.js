@@ -3,8 +3,15 @@ import axios from "axios";
 
 function WorkingWithArrays() {
   const [errorMessage, setErrorMessage] = useState(null);
+
   const API_local = "http://localhost:4000/a5/todos";
-  const API_global = "https://kanbas-node-server-app-tth1.onrender.com/a5/todos";
+  
+  const API_BASE = process.env.REACT_APP_LAB_BASE;
+  // const API_global =
+  //  "https://kanbas-node-server-app-tth1.onrender.com/a5/todos";
+  // const MODULES_URL = `${API_BASE}/modules`;
+  const API_global = `${API_BASE}/a5/todos`;
+  
   const [todo, setTodo] = useState({
     id: 1,
     title: "NodeJS Assignment",
@@ -35,7 +42,9 @@ function WorkingWithArrays() {
   };
   const updateTitle = async () => {
     try {
-      const response = await axios.get(`${API_global}/${todo.id}/title/${todo.title}`);
+      const response = await axios.get(
+        `${API_global}/${todo.id}/title/${todo.title}`
+      );
       setTodos(response.data);
     } catch (error) {
       console.log(error);
@@ -216,7 +225,10 @@ function WorkingWithArrays() {
 
       <span> Complete? {todo.completed.toString()}</span>
       <h3>Deleting from an Array</h3>
-      <a href={`${API_global}/${todo.id}/delete`} className="btn btn-primary me-2">
+      <a
+        href={`${API_global}/${todo.id}/delete`}
+        className="btn btn-primary me-2"
+      >
         Delete Todo with ID = {todo.id}
       </a>
     </div>

@@ -10,8 +10,11 @@ function WorkingWithObjects() {
     score: 0,
   });
   // const URL = "http://localhost:4000/a5/assignment";
-  const URL_local = "http://localhost:4000/a5/assignment";
-  const URL_global = "https://kanbas-node-server-app-tth1.onrender.com/a5/assignment";
+  // const URL_local = "http://localhost:4000/a5/assignment";
+  // const URL_global = "https://kanbas-node-server-app-tth1.onrender.com/a5/assignment";
+  const API_BASE = process.env.REACT_APP_LAB_BASE;
+  const URL_global = `${API_BASE}/a5/assignment`;
+  
   const fetchAssignment = async() => {
     const response = await axios.get(`${URL_global}`);
     setAssignment(response.data);
