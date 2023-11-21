@@ -3,7 +3,8 @@ import axios from "axios";
 
 function WorkingWithArrays() {
   const [errorMessage, setErrorMessage] = useState(null);
-  const API = "http://localhost:4000/a5/todos";
+  const API_local = "http://localhost:4000/a5/todos";
+  const API_global = "https://kanbas-node-server-app-tth1.onrender.com/a5/todos";
   const [todo, setTodo] = useState({
     id: 1,
     title: "NodeJS Assignment",
@@ -13,28 +14,28 @@ function WorkingWithArrays() {
   });
   const [todos, setTodos] = useState([]);
   const postTodo = async () => {
-    const response = await axios.post(API, todo);
+    const response = await axios.post(API_global, todo);
     setTodos([...todos, response.data]);
   };
   const fetchTodos = async () => {
-    const response = await axios.get(API);
+    const response = await axios.get(API_global);
     setTodos(response.data);
   };
   const removeTodo = async (todo) => {
-    const response = await axios.get(`${API}/${todo.id}/delete`);
+    const response = await axios.get(`${API_global}/${todo.id}/delete`);
     setTodos(response.data);
   };
   const createTodo = async () => {
-    const response = await axios.get(`${API}/create`);
+    const response = await axios.get(`${API_global}/create`);
     setTodos(response.data);
   };
   const fetchTodoById = async (id) => {
-    const response = await axios.get(`${API}/${id}`);
+    const response = await axios.get(`${API_global}/${id}`);
     setTodo(response.data);
   };
   const updateTitle = async () => {
     try {
-      const response = await axios.get(`${API}/${todo.id}/title/${todo.title}`);
+      const response = await axios.get(`${API_global}/${todo.id}/title/${todo.title}`);
       setTodos(response.data);
     } catch (error) {
       console.log(error);
@@ -43,7 +44,7 @@ function WorkingWithArrays() {
   };
   const deleteTodo = async (todo) => {
     try {
-      const response = await axios.delete(`${API}/${todo.id}`);
+      const response = await axios.delete(`${API_global}/${todo.id}`);
       setTodos(todos.filter((t) => t.id !== todo.id));
     } catch (error) {
       console.log(error);
@@ -51,7 +52,7 @@ function WorkingWithArrays() {
     }
   };
   const updateTodo = async () => {
-    const response = await axios.put(`${API}/${todo.id}`, todo);
+    const response = await axios.put(`${API_global}/${todo.id}`, todo);
     setTodos(todos.map((t) => (t.id === todo.id ? todo : t)));
     setTodo({});
   };
@@ -63,7 +64,7 @@ function WorkingWithArrays() {
     <div>
       <h3>Working with Arrays</h3>
       <h4>Retrieving Arrays</h4>
-      <a href={API} className="btn btn-primary me-2">
+      <a href={API_global} className="btn btn-primary me-2">
         Get Todos
       </a>
       <h4>Retrieving an Item from an Array by ID</h4>
@@ -73,15 +74,15 @@ function WorkingWithArrays() {
         value={todo.id}
         onChange={(e) => setTodo({ ...todo, id: e.target.value })}
       />
-      <a href={`${API}/${todo.id}`} className="btn btn-primary me-2">
+      <a href={`${API_global}/${todo.id}`} className="btn btn-primary me-2">
         Get Todo by ID
       </a>
       <h3>Filtering Array Items</h3>
-      <a href={`${API}?completed=true`} className="btn btn-primary me-2">
+      <a href={`${API_global}?completed=true`} className="btn btn-primary me-2">
         Get Completed Todos
       </a>
       <h4>Creating new Items in an Array</h4>
-      <a href={`${API}/create`} className="btn btn-primary me-2">
+      <a href={`${API_global}/create`} className="btn btn-primary me-2">
         Create Todo
       </a>
       <input
@@ -175,14 +176,14 @@ function WorkingWithArrays() {
       </ul>
       <h3>Updating an Item in an Array</h3>
       <a
-        href={`${API}/${todo.id}/title/${todo.title}`}
+        href={`${API_global}/${todo.id}/title/${todo.title}`}
         className="btn btn-primary me-2"
       >
         Update Title to {todo.title}
       </a>
       <h2>Modify Description (Extra Credit)</h2>
       <a
-        href={`${API}/${todo.id}/description/${todo.description}`}
+        href={`${API_global}/${todo.id}/description/${todo.description}`}
         className="btn btn-primary me-2 float-end"
       >
         Modify Description
@@ -196,7 +197,7 @@ function WorkingWithArrays() {
 
       <h2>Set Completed (Extra Credit)</h2>
       <a
-        href={`${API}/${todo.id}/completed/${todo.completed}`}
+        href={`${API_global}/${todo.id}/completed/${todo.completed}`}
         className="btn btn-primary me-2 float-end"
       >
         Modify Completion
@@ -215,7 +216,7 @@ function WorkingWithArrays() {
 
       <span> Complete? {todo.completed.toString()}</span>
       <h3>Deleting from an Array</h3>
-      <a href={`${API}/${todo.id}/delete`} className="btn btn-primary me-2">
+      <a href={`${API_global}/${todo.id}/delete`} className="btn btn-primary me-2">
         Delete Todo with ID = {todo.id}
       </a>
     </div>

@@ -12,6 +12,8 @@ function EncodingParametersInURLs() {
   // useEffect(() => {
   //   fetchWelcome();
   // }, []);
+  const URL_local = "http://localhost:4000";
+  const URL_global = "https://kanbas-node-server-app-tth1.onrender.com";
 
   return (
     <div>
@@ -34,26 +36,26 @@ function EncodingParametersInURLs() {
       />
       <h3>Query Parameters</h3>
       <a
-        href={`http://localhost:4000/a5/calculator?a=${a}&b=${b}&operation=add`}
+        href={`${URL_global}/a5/calculator?a=${a}&b=${b}&operation=add`}
         className="btn btn-primary"
       >
         Add {a} + {b}
       </a>
       <a
-        href={`http://localhost:4000/a5/calculator?a=${a}&b=${b}&operation=subtract`}
+        href={`${URL_global}/a5/calculator?a=${a}&b=${b}&operation=subtract`}
         className="btn btn-danger"
       >
         Substract {a} - {b}
       </a>
       <h3>Path Parameters</h3>
       <a
-        href={`http://localhost:4000/a5/add/${a}/${b}`}
+        href={`${URL_global}/a5/add/${a}/${b}`}
         className="btn btn-primary"
       >
         Add {a} + {b}
       </a>
       <a
-        href={`http://localhost:4000/a5/subtract/${a}/${b}`}
+        href={`${URL_global}/a5/subtract/${a}/${b}`}
         className="btn btn-danger"
       >
         Substract {a} - {b}

@@ -9,13 +9,15 @@ function WorkingWithObjects() {
     completed: false,
     score: 0,
   });
-  const URL = "http://localhost:4000/a5/assignment";
+  // const URL = "http://localhost:4000/a5/assignment";
+  const URL_local = "http://localhost:4000/a5/assignment";
+  const URL_global = "https://kanbas-node-server-app-tth1.onrender.com/a5/assignment";
   const fetchAssignment = async() => {
-    const response = await axios.get(`${URL}`);
+    const response = await axios.get(`${URL_global}`);
     setAssignment(response.data);
   };
   const updateTitle = async() => {
-    const response = await axios.get(`${URL}/title/${assignment.title}`);
+    const response = await axios.get(`${URL_global}/title/${assignment.title}`);
     setAssignment(response.data);
   };
   useEffect( () => {fetchAssignment();}, []);
@@ -38,7 +40,7 @@ function WorkingWithObjects() {
       </a>
       <h4>Modifying Properties</h4>
       <a
-        href={`${URL}/title/${assignment.title}`}
+        href={`${URL_global}/title/${assignment.title}`}
         className="btn btn-primary me-2 float-end"
       >
         Update Title
@@ -53,7 +55,7 @@ function WorkingWithObjects() {
       />
       // UPDATING SCORE: EXTRA CREDIT - 1
       <a
-        href={`${URL}/score/${assignment.score}`}
+        href={`${URL_global}/score/${assignment.score}`}
         className="btn btn-primary me-2 float-end"
       >
         Update Score
@@ -68,7 +70,7 @@ function WorkingWithObjects() {
       />
       // UPDATING COMPLETED: EXTRA CREDIT - 2
       <a
-        href={`${URL}/completed/${assignment.completed}`}
+        href={`${URL_global}/completed/${assignment.completed}`}
         className="btn btn-primary me-2 float-end"
       >
         Update Completed

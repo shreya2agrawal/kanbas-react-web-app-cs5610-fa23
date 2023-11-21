@@ -14,9 +14,10 @@ import axios from "axios";
 function Kanbas() {
   //const [courses, setCourses] = useState(db.courses);
   const [courses, setCourses] = useState([]);
-  const URL = "http://localhost:4000/api/courses";
+  const URL_local = "http://localhost:4000/api/courses";
+  const URL_global = "https://kanbas-node-server-app-tth1.onrender.com/api/courses";
   const findAllCourses = async () => {
-    const response = await axios.get(URL);
+    const response = await axios.get(URL_global);
     setCourses(response.data);
   };
   useEffect(() => {
@@ -34,7 +35,7 @@ function Kanbas() {
   //   setCourses([{ ...course, _id: new Date().getTime()}, ...courses]);
   // };
   const addNewCourse = async () => {
-    const response = await axios.post(URL, course);
+    const response = await axios.post(URL_global, course);
     setCourses([
       response.data,
       ...courses,
