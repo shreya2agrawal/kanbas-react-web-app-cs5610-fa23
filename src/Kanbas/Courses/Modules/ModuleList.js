@@ -116,7 +116,8 @@ function Modules() {
               className="form-control"
               value={module.name}
               onChange={(e) =>
-                dispatch(setModule({ ...module, name: e.target.value }))
+                // dispatch(setModule({ ...module, name: e.target.value }))
+                setModule({ ...module, name: e.target.value })
               }
             />
             <br />
@@ -124,7 +125,8 @@ function Modules() {
               className="form-control"
               value={module.description}
               onChange={(e) =>
-                dispatch(setModule({ ...module, description: e.target.value }))
+                // dispatch(setModule({ ...module, description: e.target.value }))
+                setModule({ ...module, description: e.target.value })
               }
             />
             <br />
@@ -132,7 +134,7 @@ function Modules() {
               className="btn btn-success float-end wd-add-update-button"
               onClick={() =>
                 //dispatch(addModule({ ...module, course: courseId }))
-                dispatch(handleAddModule)
+                handleAddModule
               }
             >
               Add
@@ -141,7 +143,7 @@ function Modules() {
               className="btn btn-warning float-end wd-add-update-button"
               onClick={() => 
                 //dispatch(updateModule(module))}
-                dispatch(handleUpdateModule)
+                handleUpdateModule
               }
             >
               Update
@@ -190,7 +192,8 @@ function Modules() {
                   </button> */}
                     <button
                       className="btn btn-sm btn-dark wd-module-list-button"
-                      onClick={() => dispatch(setModule(module))}
+                      // onClick={() => dispatch(setModule(module))}
+                      onClick={() => setModule(module)}
                     >
                       Edit
                     </button>
@@ -199,7 +202,7 @@ function Modules() {
                       className="btn btn-sm btn-danger wd-module-list-button"
                       onClick={() => 
                         // dispatch(deleteModule(module._id))
-                        dispatch(handleDeleteModule)
+                        handleDeleteModule
                       }
                     >
                       Delete
@@ -241,14 +244,16 @@ function Modules() {
                   </button> */}
                         <button
                           className="btn btn-sm btn-dark wd-module-list-button"
-                          onClick={() => dispatch(setModule(module))}
+                          //onClick={() => dispatch(setModule(module))}
+                          onClick={() => setModule(module)}
                         >
                           Edit
                         </button>
                         {/* DELETE MODULE BUTTON*/}
                         <button
                           className="btn btn-sm btn-danger wd-module-list-button"
-                          onClick={() => dispatch(deleteModule(module._id))}
+                          // onClick={() => dispatch(deleteModule(module._id))}
+                          onClick={() => deleteModule(module._id)}
                         >
                           Delete
                         </button>
