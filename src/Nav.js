@@ -5,7 +5,11 @@ function Nav() {
     <nav className="nav nav-tabs mt-2">
       <Link
         to="https://aquamarine-travesseiro-7b10c8.netlify.app/"
-        className={`nav-link ${pathname.includes("aquamarine-travesseiro-7b10c8.netlify.app") ? "active" : ""}`}
+        className={`nav-link ${
+          pathname.includes("aquamarine-travesseiro-7b10c8.netlify.app")
+            ? "active"
+            : ""
+        }`}
       >
         A1
       </Link>
@@ -44,6 +48,9 @@ function Nav() {
         className={`nav-link ${pathname.includes("a5") ? "active" : ""}`}
       >
         A5
+      </Link>
+      <Link className="nav-link" to="/Project">
+        Project
       </Link>
     </nav>
   );

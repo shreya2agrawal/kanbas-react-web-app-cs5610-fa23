@@ -13,8 +13,7 @@ function App() {
     <HashRouter>
       <div>
         <Routes>
-          {/* <Route path="/" element={<Navigate to="/Labs" />} /> */}
-          <Route path="/" element={<Navigate to="project" />} />
+          <Route path="/" element={<Navigate to="/Labs" />} />
           <Route path="/project/*" element={<Project />} />
           <Route path="/Hello" element={<HelloWorld />} />
           <Route path="/Labs/*" element={<Labs />} />
@@ -23,22 +22,6 @@ function App() {
         </Routes>
       </div>
     </HashRouter>
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
   );
 }
 
