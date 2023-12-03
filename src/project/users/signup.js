@@ -1,22 +1,22 @@
-import * as client from "./client";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-function Signin() {
+import * as client from "./client";
+
+function Signup() {
   const [error, setError] = useState("");
   const [user, setUser] = useState({ username: "", password: "" });
   const navigate = useNavigate();
-  const signin = async () => {
+  const signup = async () => {
     try {
-      await client.signin(user);
+      await client.signup(user);
       navigate("/project/account");
     } catch (err) {
       setError(err.response.data.message);
     }
   };
-
   return (
     <div className="w-50">
-      <h1>Signin</h1>
+      <h1>Signup</h1>
       {error && <div className="alert alert-danger">{error}</div>}
       <input
         value={user.username}
@@ -31,11 +31,11 @@ function Signin() {
         placeholder="password"
         className="form-control mb-2"
       />
-      <button onClick={signin} className="btn btn-primary w-100">
-        Signin
+      <button onClick={signup} className="btn btn-primary w-100">
+        Signup
       </button>
     </div>
   );
 }
 
-export default Signin;
+export default Signup;

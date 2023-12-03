@@ -1,6 +1,6 @@
 import axios from "axios";
 export const NAPSTER_API = "https://api.napster.com/v2.2";
-export const API_KEY = process.env.REACT_APP_NAPSTER_API_KEY;
+export const API_KEY = process.env.REACT_APP_API_BASE_URL;
 
 export const findAlbums = async (searchTerm) => {
   const response = await axios.get(

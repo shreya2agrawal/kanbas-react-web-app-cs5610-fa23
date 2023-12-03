@@ -1,68 +1,124 @@
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import * as client from "./client";
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setCurrentUser } from "./reducer";
+import * as courseClient from "../courses/client";
+
 function Account() {
-  const [user, setUser] = useState(null);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const fetchUser = async () => {
-    try {
-      const user = await client.account();
-      setUser(user);
-    } catch (error) {
-      navigate("/project/signin");
-    }
-  };
-  const updateUser = async () => {
-    const status = await client.updateUser(user._id, user);
+  const { id } = useParams();
+  const [courses, setCourses] = useState([]);
+  const fetchCourses = async () => {
+    const courses = await courseClient.findCoursesByAuthor(id);
+    setCourses(courses);
   };
   const signout = async () => {
-    const status = await client.signout();
-    dispatch(setCurrentUser(null));
+    await client.signout();
     navigate("/project/signin");
   };
+  const [account, setAccount] = useState(null);
+  const navigate = useNavigate();
+  const fetchAccount = async (id) => {
+    try {
+      if (id) {
+        const account = await client.findUserById(id);
+        setAccount(account);
+      } else {
+        const account = await client.account();
+        setAccount(account);
+      }
+    } catch (err) {
+      navigate("/project/login");
+    }
+  };
+
+  const save = async () => {
+    await client.updateUser(account);
+  };
+
   useEffect(() => {
-    fetchUser();
+    fetchAccount(id);
+    fetchCourses();
   }, []);
+
   return (
-    <div>
+    <div className="w-50">
       <h1>Account</h1>
-      {user && (
+      {account && (
         <div>
-          <p>Username: {user.username}</p>
           <input
+            value={account.username}
+            readOnly
+            placeholder="username"
+            className="form-control mb-2"
+          />
+          <input
+            onChange={(e) =>
+              setAccount({ ...account, password: e.target.value })
+            }
+            value={account.password}
+            type="password"
+            className="form-control mb-2"
+          />
+          <input
+            onChange={(e) =>
+              setAccount({ ...account, firstName: e.target.value })
+            }
+            value={account.firstName}
+            className="form-control mb-2"
+          />
+          <input
+            onChange={(e) =>
+              setAccount({ ...account, lastName: e.target.value })
+            }
+            value={account.lastName}
+            className="form-control mb-2"
+          />
+          <input
+            onChange={(e) => setAccount({ ...account, dob: e.target.value })}
+            value={account.dob && account.dob.substring(0, 10)}
+            type="date"
+            className="form-control mb-2"
+          />
+          <input
+            onChange={(e) => setAccount({ ...account, email: e.target.value })}
+            value={account.email}
             type="email"
-            className="form-control"
-            value={user.email}
-            onChange={(e) => setUser({ ...user, email: e.target.value })}
+            className="form-control mb-2"
           />
-          <input
-            type="text"
-            className="form-control"
-            value={user.firstName}
-            onChange={(e) => setUser({ ...user, firstName: e.target.value })}
-          />
-          <input
-            type="text"
-            className="form-control"
-            value={user.lastName}
-            onChange={(e) => setUser({ ...user, lastName: e.target.value })}
-          />
-          <button onClick={updateUser} className="btn btn-primary">
-            Update
+          <select
+            onChange={(e) => setAccount({ ...account, role: e.target.value })}
+            value={account.role}
+            className="form-control mb-2"
+          >
+            <option value="USER">User</option>
+            <option value="ADMIN">Admin</option>
+            <option value="FACULTY">Faculty</option>
+            <option value="STUDENT">Student</option>
+          </select>
+          <button onClick={save} className="btn btn-primary w-100 mb-2">
+            Save
           </button>
-          <button onClick={signout} className="btn btn-danger">
-            Sign Out
+          <button onClick={signout} className="btn btn-danger w-100 mb-2">
+            Signout
           </button>
-          {user.role === "ADMIN" && (
-            <Link to="/project/users" className="btn btn-warning">
+          {account.role === "ADMIN" && (
+            <Link to="/project/admin/users" className="btn btn-warning w-100">
               Users
             </Link>
           )}
         </div>
       )}
+      <h2>Courses</h2>
+      <div className="list-group">
+        {courses.map((course) => (
+          <Link
+            key={course._id}
+            to={`/project/courses/${course._id}`}
+            className="list-group-item"
+          >
+            {course.name}
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }
