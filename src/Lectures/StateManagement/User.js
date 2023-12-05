@@ -15,14 +15,17 @@ function User() {
       </p>
       <p>{user.email}</p>
       <input
+        placeholder="First Name"
         value={user.firstName}
         onChange={(e) => setUser({ ...user, firstName: e.target.value })}
       />
       <input
         value={user.lastName}
+        placeholder="Last Name"
         onChange={(e) => setUser({ ...user, lastName: e.target.value })}
       />
       <input
+        placeholder="Email"
         value={user.email}
         onChange={(e) => setUser({ ...user, email: e.target.value })}
       />
