@@ -1,8 +1,9 @@
 import * as client from "./client";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 function Account() {
+  const { id } = useParams();
   const [account, setAccount] = useState(null);
   const navigate = useNavigate();
   const save = async () => {
@@ -16,9 +17,18 @@ function Account() {
     const account = await client.account();
     setAccount(account);
   };
+  const findUserById = async (id) => {
+    const user = await client.findUserById(id);
+    setAccount(user);
+  };
   useEffect(() => {
-    fetchAccount();
+    if (id) {
+      findUserById(id);
+    } else {
+      fetchAccount();
+    }
   }, []);
+
   return (
     <div className="w-50">
       <h1>Account</h1>
